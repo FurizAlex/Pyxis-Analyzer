@@ -1,0 +1,101 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Pyxis",
+	"scopeName": "source.pyxis",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#primitives"
+		},
+		{
+			"include": "#conditions"
+		},
+		{
+			"include": "#special_keywords"
+		},
+		{
+			"include": "#functions_definitions"
+		},
+		{
+			"include": "#define_header"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#compiler"
+		},
+		{
+			"include": "#standard_libraries"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.pyxis",
+				"match": "\\b(func|defi|class|var|thread|actor|print)\\b"
+			}]
+		},
+		"primitives": {
+			"patterns": [{
+				"name": "keyword.primitives.pyxis",
+				"match": "\\b(Void|Int|Char|String|Float|Class)\\b"
+			}]
+		},
+		"conditions": {
+			"patterns": [{
+				"name": "keyword.conditions.pyxis",
+				"match": "\\b(if|else|match|for|while|unif)\\b"
+			}]
+		},
+		"special_keywords": {
+			"patterns": [{
+				"name": "keyword.other.special.pyxis",
+				"match": "@(extends|wrafs|export|ghost|hotlink|tracker)"
+			}]
+		},
+		"functions_definitions": {
+		  "patterns": [{
+		    "begin": "\\bfunc\\b\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+		    "end": "(?=\\()|$",
+		    "name": "meta.function.definition.pyxis",
+		    "beginCaptures": {
+		      "0": { "name": "keyword.control.funcdef.pyxis" },
+		      "1": { "name": "entity.name.function.pyxis" }
+		    },
+		    "patterns": []
+		  }]
+		},
+		"define_header": {
+			"patterns": [{
+				"name": "define.header.pyxis",
+				"match": "#(Normal|Dev|Custom)"
+			}]
+		},
+		"compiler": {
+			"patterns": [{
+				"name": "meta.compiler.pyxis",
+				"match": "cc::[a-zA-Z_][a-zA-Z0-9_]*"
+			}]
+		},
+		"standard_libraries" : {
+			"patterns": [{
+				"name": "support.library.stdlib.pyxis",
+				"match": "@[a-zA-Z_][a-zA-Z0-9_]*"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.pyxis",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.pyxis",
+					"match": "\\\\."
+				}
+			]
+		}
+	}
+}

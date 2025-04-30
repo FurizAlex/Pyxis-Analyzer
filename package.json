@@ -1,0 +1,25 @@
+{
+  "name": "pyxis",
+  "displayName": "Pyxis",
+  "description": "One of the programming languages of all time.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "pyxis",
+      "aliases": ["Pyxis", "pyxis"],
+      "extensions": [".pyx"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "pyxis",
+      "scopeName": "source.pyxis",
+      "path": "./syntaxes/pyxis.tmLanguage.json"
+    }]
+  }
+}
