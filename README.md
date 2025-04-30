@@ -1,4 +1,4 @@
-# pyxis README
+# Pyxis Automaticly Generated README
 
 This is the README for your extension "pyxis". After writing up a brief description, we recommend including the following sections.
 
