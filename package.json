@@ -20,6 +20,10 @@
       "language": "pyxis",
       "scopeName": "source.pyxis",
       "path": "./syntaxes/pyxis.tmLanguage.json"
+    }],
+    "snippets": [{
+        "language": "pyxis",
+        "path": "./snippets/pyxis.json"
     }]
   }
 }

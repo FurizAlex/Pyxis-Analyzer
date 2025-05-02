@@ -1,0 +1,348 @@
+{
+		"Insert Pyxis Main Template": {
+			"prefix": ":stdheader:",
+			"body": [
+				"@extends #Normal cc::standard[${1:@applepie}]",
+				"    $0",
+				"defi ready() <--> Void:",
+				"    pass[null]",
+				"    $0",
+				"defi main() <--> Void:",
+				"    pass[null]"
+			],
+			"description": "Inserts a basic Pyxis main function"
+		},
+		"Base Header": {
+			"prefix": ":header:",
+			"body": [
+				"@extends #Normal cc::standard[${1:@applepie}]"
+			],
+			"description": "Inserts a basic header"
+		},
+		"Custom Function": {
+			"prefix": "func",
+			"body": [
+				"func"
+			],
+			"description": "Define a custom function"
+		},
+		"Custom Function (dynamic)": {
+			"prefix": "func",
+			"body": [
+				"func ${1:name}(${2:args}):",
+				"    $0"
+			],
+			"description": "Define a custom function"
+		},
+		"Custom Function (static)": {
+			"prefix": "func",
+			"body": [
+				"func ${1:name}(${2:args}) <--> ${3|Void,Int,Char,String,Float,Class,Array,Physics|}:",
+				"    $0"
+			],
+			"description": "Define a custom function"
+		},
+		"Prebuilt Function": {
+			"prefix": "defi",
+			"body": [
+					"defi"
+			],
+			"description": "Define a pre-built function"
+		},
+		"Prebuilt Function (dynamic)": {
+				"prefix": "defi",
+				"body": [
+						"defi ${1|main,process,init,exit,run,imide,input,physics|}(${2:}):",
+						"    $0"
+				],
+				"description": "Define a pre-built function"
+		},
+		"Prebuilt Function (static)": {
+			"prefix": "defi",
+			"body": [
+					"defi ${1|main,process,init,exit,run,imide,input,physics|}(${2:}) <--> ${3|Void,Int,Char,String,Float,Class,Array,Physics|}:",
+					"    $0"
+			],
+			"description": "Define a pre-built function"
+		},
+		"Class Declaration": {
+			"prefix": "class",
+			"body": [
+				"class ${1:Name}:",
+				"    $0"
+			],
+			"description": "Define a class"
+		},
+		"If Statement": {
+				"prefix": "if",
+				"body": [
+					"if ${1|foo,bar,baz|} ${2::} ${3:value}:",
+					"    $0"
+				],
+				"description": "If statement with variable choices"
+		},
+		"Variable": {
+			"prefix": "var",
+			"body": "var",
+			"description": "Declare a variable"
+		},
+		"Variable (dynamic)": {
+			"prefix": "var-dynamic",
+			"body": "var ${1:name}::${2:value}",
+			"description": "Declare a dynamically typed variable"
+		},
+		"Variable (static)": {
+			"prefix": "var-static",
+			"body": "var ${1:name} >> ${2|Int,Char,String,Void,Array,Float|}::${3:value}",
+			"description": "Declare a statically typed variable"
+		},
+		"Lock": {
+			"prefix": "lock",
+			"body": "lock",
+			"description": "Declare a lock"
+		},
+		"Lock (dynamic)": {
+			"prefix": "lock-dynamic",
+			"body": "lock ${1:name}::${2:value}",
+			"description": "Declare a dynamically typed lock"
+		},
+		"Lock (static)": {
+			"prefix": "lock-static",
+			"body": "lock ${1:name} >> ${2|Int,Char,String,Void,Array,Float|}::${3:value}",
+			"description": "Declare a statically typed lock"
+		},
+		"Unif (elif alternative)": {
+			"prefix": "unif",
+			"body": [
+				"unif ${1:condition}:",
+				"    $0"
+				],
+			"description": "Alternative to elif"
+		},
+		"Else Statement": {
+				"prefix": "else",
+				"body": [
+					"else ${1:condition}:",
+					"    $0"
+					],
+				"description": "Else statement"
+		},
+		"Print Statement": {
+			"prefix": "print",
+			"body": [
+				"print ${1:}"
+			],
+			"description": "Print statement"
+		},
+		"Pass": {
+			"prefix": "pass",
+			"body": [
+				"pass${1|[todo...],[null],[]|}"
+			],
+			"description": "Todo"
+		},
+		"Hash Defines": {
+			"prefix": "#type",
+			"body": [
+				"#${1|Normal,Debug,Custom|}"
+			],
+			"description": "Defining the type of script"
+		},
+		"Error Standard": {
+			"prefix": "error",
+			"body": [
+				"error print ${1:\"Error\"}"
+			],
+			"description": "Print statement"
+		},
+		"Vector": {
+			"prefix": "vector",
+			"body": [
+				"Vector<${1|2,3|}>"
+			],
+			"description": "Print statement"
+		},
+		"Get Traits": {
+			"prefix": "<get_traits>",
+			"body": [
+				"<get_traits>"
+			],
+			"description": "Print statement"
+		},
+		"True": {
+			"prefix": "true",
+			"body": [
+				"true"
+			],
+			"description": "Trufy Statement"
+		},
+		"False": {
+			"prefix": "false",
+			"body": [
+				"false"
+			],
+			"description": "Falsy Statement"
+		},
+		"At": {
+			"prefix": "special",
+			"body": [
+				"@${1|extends,reference,wrafs,export,ghost,hotlink,bind,tracker|}"
+			],
+			"description": "Falsy Statement"
+		},
+		"Thread Block": {
+			"prefix": "thread",
+			"body": [
+				"thread ${1:ThreadName}:",
+				"    $0"
+			],
+			"description": "Create a new thread"
+		},
+		"Actor Block": {
+			"prefix": "actor",
+			"body": [
+				"actor ${1:ActorName}",
+				"    $0"
+			],
+			"description": "Define an actor block"
+		},
+		"Parallel Block": {
+			"prefix": "parallel",
+			"body": [
+				"parallel:",
+				"    $0"
+			],
+			"description": "Run enclosed tasks in parallel"
+		},
+		"Input Record": {
+			"prefix": "inputRecord",
+			"body": [
+				"inputRecord(\"${1:key}\")"
+			],
+			"description": "Standard Input from Keyboard"
+		},
+	
+		"@extends": {
+			"prefix": "@extends",
+			"body": "@extends #Normal cc::standard[${1:COMPILER}]",
+			"description": "Include standard library"
+		},
+		"@export": {
+			"prefix": "@export",
+			"body": "@export ${1:identifier}",
+			"description": "Export identifier"
+		},
+		"@ghost": {
+			"prefix": "@ghost",
+			"body": "@ghost ${1:behavior}",
+			"description": "Mark ghost behavior"
+		},
+		"@hotlink": {
+			"prefix": "@hotlink",
+			"body": "@hotlink ${1:link}",
+			"description": "Define a hotlink"
+		},
+		"@bind": {
+			"prefix": "@bind",
+			"body": "@bind ${1:event} >> ../~SOURCE::${2:action}",
+			"description": "Attach a tracker"
+		},
+		"@tracker": {
+			"prefix": "@tracker",
+			"body": "@tracker ${1:identifier}",
+			"description": "Attach a tracker"
+		},
+		"@wrafs": {
+			"prefix": "@wrafs",
+			"body": "@wrafs ${1:lib}",
+			"description": "Reference & Links variables"
+		},
+		"@reference": {
+			"prefix": "@reference",
+			"body": "@reference ${1:cc::standard::[]}",
+			"description": "Reference external library"
+		},
+	
+		"Standard Library - Halcyon": {
+			"prefix": "@Halcyon",
+			"body": "@Halcyon",
+			"description": "Import Halcyon stdlib"
+		},
+		"Standard Library - Jellybeans": {
+			"prefix": "@Jellybeans",
+			"body": "@Jellybeans",
+			"description": "Import Jellybeans stdlib"
+		},
+	
+		"Compiler Directive": {
+			"prefix": "cc::",
+			"body": "cc::${1:module}",
+			"description": "Use a compiler directive"
+		},
+
+		"Int": {
+			"prefix": "Int",
+			"body": "Int",
+			"description": "Integer"
+		},
+		"Char": {
+			"prefix": "Char",
+			"body": "Char",
+			"description": "Char"
+		},
+		"String": {
+			"prefix": "String",
+			"body": "String",
+			"description": "String"
+		},
+		"Void": {
+			"prefix": "Void",
+			"body": "Void",
+			"description": "Void"
+		},
+		"Float": {
+			"prefix": "Float",
+			"body": "Float",
+			"description": "Float"
+		},
+		"Class": {
+			"prefix": "Class",
+			"body": "Class",
+			"description": "Class"
+		},
+		"Array": {
+			"prefix": "Array",
+			"body": "Array",
+			"description": "Array"
+		},
+		"Physics": {
+			"prefix": "Physics",
+			"body": "Physics",
+			"description": "Physics"
+		},
+	
+		"Inline Error Handling": {
+			"prefix": "!>",
+			"body": "${1:expression} !> ${2:handleError}",
+			"description": "Inline error handling"
+		},
+		"Ok Pipe": {
+			"prefix": "then",
+			"body": "|> ${1:statement}",
+			"description": "Handle success result"
+		},
+
+		"String Inside": {
+			"prefix": "\"",
+			"body": "\"${1:content}\"",
+			"description": "Double quoted string"
+		},
+	
+		"Range Loop": {
+			"prefix": "<=>",
+			"body": "${1:var} <=> ${2:start}..${3:end} {",
+			"    $0":
+			"}",
+			"description": "Range-based loop"
+		}
+}

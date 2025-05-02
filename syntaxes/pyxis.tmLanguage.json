@@ -3,58 +3,152 @@
 	"name": "Pyxis",
 	"scopeName": "source.pyxis",
 	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#primitives"
-		},
-		{
-			"include": "#conditions"
-		},
-		{
-			"include": "#special_keywords"
-		},
-		{
-			"include": "#functions_definitions"
-		},
-		{
-			"include": "#define_header"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#compiler"
-		},
-		{
-			"include": "#standard_libraries"
-		}
+		{ "include": "#custom_variable_declaration" },
+		{ "include": "#keywords" },
+		{ "include": "#custom functions" },
+		{ "include": "#prebuilt functions" },
+		{ "include": "#special_keywords" },
+		{ "include": "#define_header" },
+		{ "include": "#functions_definitions" },
+		{ "include": "#primitives" },
+		{ "include": "#references" },
+		{ "include": "#constructs" },
+		{ "include": "#jellybeans" },
+		{ "include": "#error" },
+		{ "include": "#comments" },
+		{ "include": "#strings" },
+		{ "include": "#compiler" },
+		{ "include": "#standard_libraries" }
 	],
 	"repository": {
+		"custom functions": {
+		  "patterns": [
+		    {
+		      "begin": "\\b(func|inputRecord|thread|actor|class|print)\\b",
+		      "beginCaptures": {
+		        "1": { "name": "custom.function.control.pyxis" }
+		      },
+		      "end": "$",
+		      "patterns": [
+		        { "include": "#keywords" },
+		        { "include": "#primitives" },
+		        { "include": "#constructs" },
+				{ "include": "#references" },
+		        { "include": "#strings" },
+		        { "include": "#custom functions" },
+		        { "include": "#prebuilt functions" },
+		        { "include": "#compiler" },
+		        { "include": "#standard_libraries" },
+				{ "include": "#special_keywords" }
+		      ]
+		    }
+		  ]
+		},
+		"prebuilt functions": {
+		  "patterns": [
+		    {
+		      "begin": "\\b(defi)\\b",
+		      "beginCaptures": {
+		        "1": { "name": "custom.prebuilt.control.pyxis" }
+		      },
+		      "end": "$",
+		      "patterns": [
+		        { "include": "#keywords" },
+		        { "include": "#primitives" },
+		        { "include": "#constructs" },
+				{ "include": "#references" },
+		        { "include": "#strings" },
+		        { "include": "#custom functions" },
+		        { "include": "#compiler" },
+		        { "include": "#standard_libraries" },
+				{ "include": "#special_keywords" }
+		      ]
+		    }
+		  ]
+		},
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.pyxis",
-				"match": "\\b(func|defi|class|var|thread|actor|print)\\b"
-			}]
+		  "patterns": [
+		    {
+		      "begin": "\\b(var|lock|if|else|match|for|while|unif|pass|return|true|false)\\b",
+		      "beginCaptures": {
+		        "1": { "name": "keyword.control.pyxis" }
+		      },
+		      "end": "$",
+		      "patterns": [
+		        { "include": "#keywords" },
+		        { "include": "#primitives" },
+		        { "include": "#constructs" },
+				{ "include": "#references" },
+		        { "include": "#custom functions" },
+		        { "include": "#prebuilt functions" },
+		        { "include": "#strings" },
+		        { "include": "#compiler" },
+		        { "include": "#standard_libraries" },
+				{ "include": "#special_keywords" }
+		      ]
+		    }
+		  ]
 		},
 		"primitives": {
 			"patterns": [{
 				"name": "keyword.primitives.pyxis",
-				"match": "\\b(Void|Int|Char|String|Float|Class)\\b"
+				"match": "\\b(Void|Int|Char|String|Float|Class|Array|Physics)\\b"
 			}]
 		},
-		"conditions": {
+		"constructs": {
 			"patterns": [{
-				"name": "keyword.conditions.pyxis",
-				"match": "\\b(if|else|match|for|while|unif)\\b"
+		    	"name": "support.function.constructs.pyxis",
+		    	"match": "\\b(Vector|<get_traits>)\\b"
+			}]
+		},
+		"references": {
+			"patterns": [{
+		    	"name": "variable.reference.pyxis",
+				"match": "\\$[a-zA-Z_][a-zA-Z0-9_]*"
 			}]
 		},
 		"special_keywords": {
+		  "patterns": [{
+		    "begin": "(@(?:extends|wrafs|export|ghost|hotlink|bind|tracker|reference))\\b",
+		    "beginCaptures": {
+		      "1": { "name": "keyword.other.special.pyxis" }
+		    },
+		    "end": "$",
+		    "patterns": [
+		      { "include": "#keywords" },
+		      { "include": "#primitives" },
+		      { "include": "#constructs" },
+			  { "include": "#references" },
+		      { "include": "#strings" },
+		      { "include": "#custom functions" },
+		      { "include": "#prebuilt functions" },
+		      { "include": "#compiler" },
+		      { "include": "#standard_libraries" }
+		    ]
+		  }]
+		},
+		"error": {
 			"patterns": [{
-				"name": "keyword.other.special.pyxis",
-				"match": "@(extends|wrafs|export|ghost|hotlink|tracker)"
+				"name": "keyword.standard.error.pyxis",
+				"match": "\\b(!>|!?|error)\\b"
 			}]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-slash.pyxis",
+					"match": ";.*$"
+				},
+				{
+					"name": "comment.block.pyxis",
+					"begin": ";\\*",
+					"end": "\\*;"
+				},
+				{
+					"name": "comment.line.documentation.pyxis",
+					"match": ";;;.*$"
+				}
+			]
 		},
 		"functions_definitions": {
 		  "patterns": [{
@@ -71,7 +165,7 @@
 		"define_header": {
 			"patterns": [{
 				"name": "define.header.pyxis",
-				"match": "#(Normal|Dev|Custom)"
+				"match": "#(Normal|Debuug|Custom)"
 			}]
 		},
 		"compiler": {
@@ -95,6 +189,28 @@
 					"name": "constant.character.escape.pyxis",
 					"match": "\\\\."
 				}
+			]
+		},
+		"jellybeans": {
+			"patterns": [
+			  {
+				"begin": "\\b(lerp|wrap|)\\b",
+				"beginCaptures": {
+				  "1": { "name": "special.jellybeans.pyxis" }
+				},
+				"end": "$",
+				"patterns": [
+				  { "include": "#keywords" },
+				  { "include": "#primitives" },
+				  { "include": "#constructs" },
+				  { "include": "#references" },
+				  { "include": "#custom functions" },
+				  { "include": "#prebuilt functions" },
+				  { "include": "#strings" },
+				  { "include": "#compiler" },
+				  { "include": "#standard_libraries" }
+				]
+			  }
 			]
 		}
 	}
